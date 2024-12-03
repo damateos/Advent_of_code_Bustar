@@ -33,4 +33,14 @@ is_safe_damper <- function(x) {
   return(T)
 }
 
+is_safe_damper <- function(x) {
+  if (is_safe(x)) return(T)
+  for (i in 1:length(x)) {
+      y <- x[-i]
+      if (is_safe(y)) return(T)
+    }
+    return(F)
+}
+
+
 map_lgl(df, is_safe_damper) |> sum()
